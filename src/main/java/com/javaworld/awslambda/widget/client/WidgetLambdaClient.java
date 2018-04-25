@@ -9,16 +9,18 @@ import com.amazonaws.services.lambda.model.InvokeRequest;
 import com.amazonaws.services.lambda.model.InvokeResult;
 
 public class WidgetLambdaClient {
+    private static final BasicAWSCredentials credentials =
+            new BasicAWSCredentials("", "");
 
     public static void main(String[] args) {
         // Setup credentials
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("secret", "secret key");
 
         // Create an AWSLambda client
         AWSLambda lambda = AWSLambdaClientBuilder
                 .standard()
-                .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).withRegion(Regions.US_EAST_2)
+                .withCredentials(new AWSStaticCredentialsProvider(credentials)).withRegion(Regions.US_EAST_2)
                 .build();
+
 
         // Create an InvokeRequest
         InvokeRequest request = new InvokeRequest()
